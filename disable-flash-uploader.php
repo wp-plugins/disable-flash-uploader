@@ -3,7 +3,7 @@
 Plugin Name: Disable Flash Uploader
 Plugin URI: http://www.allancollins.net/193/wordpress-plug…flash-uploader
 Description: Go the browser uploader by default.
-Version: 1.0.1
+Version: 1.0.2
 Author: Allan Collins
 Author URI: http://www.allancollins.net/
 */
@@ -43,7 +43,40 @@ function dfu_code() {
 
 }
 
+function dfu_code2() {
+
+
+
+	echo "<script type=\"text/javascript\">
+
+	
+
+		jQuery(document).ready(function() {
+
+
+
+			var mylink=jQuery(\"a[href='media-new.php']\");
+			jQuery(mylink).attr('href','media-new.php?flash=0');
+	
+
+		
+
+		
+
+		});
+
+		</script>
+
+		";
+
+	
+
+
+
+}
+
 
 add_action('edit_form_advanced', 'dfu_code');
 add_action('edit_page_form', 'dfu_code');
+add_action('admin_footer', 'dfu_code2');
 ?>
