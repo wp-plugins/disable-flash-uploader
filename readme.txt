@@ -3,8 +3,8 @@ Contributors: Allan Collins
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=acollins%40paonia%2ecom&item_name=Wordpress%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: images, upload, uploader, flash
 Requires at least: 2.7
-Tested up to: 2.7
-Stable tag: 1.0.2
+Tested up to: 2.8.4
+Stable tag: 1.1
 
 Upgrade your Flash to version 10? Can't use the Flash Uploader anymore or perhaps just hate it? "Disable Flash Uploader" will set the Browser Uploader as the default. 
 
@@ -21,6 +21,8 @@ Upgrade your Flash to version 10? Can't use the Flash Uploader anymore or perhap
 3. Now when editing a page/post if you click on the add image button, it will display the Browser Uploader instead of the Flash Uploader.
 
 
+== Changelog ==
 
-
+= 1.1 =
+* Removed javascript manipulated URLs.  Utilized built-in WP functions to hard-code URLs.
 

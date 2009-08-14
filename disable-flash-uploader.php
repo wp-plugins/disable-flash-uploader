@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Disable Flash Uploader
-Plugin URI: http://www.allancollins.net/193/wordpress-plug…flash-uploader
+Plugin URI: http://www.allancollins.net/193/wordpress-plugin-disable-flash-uploader/
 Description: Go the browser uploader by default.
-Version: 1.0.2
+Version: 1.1
 Author: Allan Collins
 Author URI: http://www.allancollins.net/
 */
@@ -24,59 +24,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function dfu_code() {
+// Actions / Filters
+add_action("init","dfu_check");
+add_filter("image_upload_iframe_src","dfu_new");
+add_filter("video_upload_iframe_src","dfu_new");
+add_filter("audio_upload_iframe_src","dfu_new");
 
-	echo "<script type=\"text/javascript\">
-	
-		jQuery(function() {
 
-			var up_link=jQuery('#add_image').attr('href');
-			
-			up_link=up_link.replace('TB_iframe=true','flash=0&amp;TB_iframe=true');
-			jQuery('#add_image').attr('href',up_link);
-		
-		
-		});
-		</script>
-		";
-	
-
+// Functions
+function dfu_new($result) {
+/* Add "&flash=0" to the media upload url. */
+    $result.="&flash=0";
+    return $result;
 }
 
-function dfu_code2() {
-
-
-
-	echo "<script type=\"text/javascript\">
-
-	
-
-		jQuery(document).ready(function() {
-
-
-
-			var mylink=jQuery(\"a[href='media-new.php']\");
-			jQuery(mylink).attr('href','media-new.php?flash=0');
-	
-
-		
-
-		
-
-		});
-
-		</script>
-
-		";
-
-	
-
-
-
+function dfu_check(){
+/* If the current file is the media-new.php file, then redirect with the "?flash=0" in the URL. */
+    $file=$_SERVER['REQUEST_URI'];
+    if ($file == '/wp-admin/media-new.php') {
+        header("Location: " . $file . "?flash=0");
+    }
 }
 
 
-add_action('edit_form_advanced', 'dfu_code');
-add_action('edit_page_form', 'dfu_code');
-add_action('admin_footer', 'dfu_code2');
+
 ?>
